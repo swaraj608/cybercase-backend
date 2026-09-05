@@ -46,9 +46,11 @@ exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
 const bcrypt = __importStar(require("bcrypt"));
 const prisma_service_1 = require("../prisma/prisma.service");
+const jwt_1 = require("@nestjs/jwt");
 let AuthService = class AuthService {
-    constructor(prisma) {
+    constructor(prisma, jwtService) {
         this.prisma = prisma;
+        this.jwtService = jwtService;
     }
     async register(registerDto) {
         const { name, email, password } = registerDto;
@@ -79,10 +81,41 @@ let AuthService = class AuthService {
         });
         return user;
     }
+    async login(loginDto) {
+        const { email, password } = loginDto;
+        const normalizedEmail = email.trim().toLowerCase();
+        const user = await this.prisma.user.findUnique({
+            where: {
+                email: normalizedEmail,
+            },
+        });
+        if (!user || !user.isActive) {
+            throw new common_1.UnauthorizedException('Invalid email or password');
+        }
+        const passwordMatches = await bcrypt.compare(password, user.passwordHash);
+        if (!passwordMatches) {
+            throw new common_1.UnauthorizedException('Invalid email or password');
+        }
+        const accessToken = await this.jwtService.signAsync({
+            sub: user.id,
+            email: user.email,
+            role: user.role,
+        });
+        return {
+            accessToken,
+            user: {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                role: user.role,
+            },
+        };
+    }
 };
 exports.AuthService = AuthService;
 exports.AuthService = AuthService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService,
+        jwt_1.JwtService])
 ], AuthService);
 //# sourceMappingURL=auth.service.js.map
