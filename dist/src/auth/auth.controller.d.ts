@@ -20,4 +20,5 @@ export declare class AuthController {
             role: import("../../generated/prisma/enums").Role;
         };
     }>;
+    getMe(request: any): any;
 }
