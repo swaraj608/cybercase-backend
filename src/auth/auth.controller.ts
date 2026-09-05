@@ -10,6 +10,9 @@ import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { Role } from '../../generated/prisma/client';
+import { Roles } from './decorators/roles.decorators';
+import { RolesGuard } from './guards/roles.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -30,4 +33,13 @@ export class AuthController {
   getMe(@Req() request: any) {
     return request.user;
   }
+
+  @Get('admin-test')
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Roles(Role.ADMIN)
+getAdminTest() {
+  return {
+    message: 'Admin access granted',
+  };
+}
 }

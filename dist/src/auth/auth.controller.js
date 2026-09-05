@@ -18,6 +18,9 @@ const auth_service_1 = require("./auth.service");
 const login_dto_1 = require("./dto/login.dto");
 const register_dto_1 = require("./dto/register.dto");
 const jwt_auth_guard_1 = require("./guards/jwt-auth.guard");
+const client_1 = require("../../generated/prisma/client");
+const roles_decorators_1 = require("./decorators/roles.decorators");
+const roles_guard_1 = require("./guards/roles.guard");
 let AuthController = class AuthController {
     constructor(authService) {
         this.authService = authService;
@@ -30,6 +33,11 @@ let AuthController = class AuthController {
     }
     getMe(request) {
         return request.user;
+    }
+    getAdminTest() {
+        return {
+            message: 'Admin access granted',
+        };
     }
 };
 exports.AuthController = AuthController;
@@ -55,6 +63,14 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "getMe", null);
+__decorate([
+    (0, common_1.Get)('admin-test'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
+    (0, roles_decorators_1.Roles)(client_1.Role.ADMIN),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], AuthController.prototype, "getAdminTest", null);
 exports.AuthController = AuthController = __decorate([
     (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService])
