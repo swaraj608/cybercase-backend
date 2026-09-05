@@ -5,6 +5,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { CasesModule } from './cases/cases.module';
 import { HealthModule } from './health/health.module';
 import { PrismaModule } from './prisma/prisma.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { PrismaModule } from './prisma/prisma.module';
     ]),
 
     PrismaModule,
+    AuthModule,
     HealthModule,
     CasesModule,
   ],

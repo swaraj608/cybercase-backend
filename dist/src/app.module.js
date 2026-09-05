@@ -14,6 +14,7 @@ const core_1 = require("@nestjs/core");
 const cases_module_1 = require("./cases/cases.module");
 const health_module_1 = require("./health/health.module");
 const prisma_module_1 = require("./prisma/prisma.module");
+const auth_module_1 = require("./auth/auth.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -30,6 +31,7 @@ exports.AppModule = AppModule = __decorate([
                 },
             ]),
             prisma_module_1.PrismaModule,
+            auth_module_1.AuthModule,
             health_module_1.HealthModule,
             cases_module_1.CasesModule,
         ],
