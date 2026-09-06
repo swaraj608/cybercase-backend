@@ -80,6 +80,7 @@ export declare const CaseHistoryScalarFieldEnum: {
     readonly id: "id";
     readonly caseId: "caseId";
     readonly changedById: "changedById";
+    readonly action: "action";
     readonly oldStatus: "oldStatus";
     readonly newStatus: "newStatus";
     readonly remarks: "remarks";

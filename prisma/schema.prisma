@@ -127,11 +127,15 @@ model Assignment {
 
 model CaseHistory {
   id          String      @id @default(uuid())
-  caseId     String
+  caseId      String
   changedById String
+
+  action      String
+
   oldStatus   CaseStatus?
-  newStatus   CaseStatus
+  newStatus   CaseStatus?
   remarks     String?
+
   createdAt   DateTime    @default(now())
 
   case       Case @relation(fields: [caseId], references: [id], onDelete: Cascade)

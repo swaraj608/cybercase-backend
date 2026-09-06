@@ -11,6 +11,7 @@ export type CaseHistoryMinAggregateOutputType = {
     id: string | null;
     caseId: string | null;
     changedById: string | null;
+    action: string | null;
     oldStatus: $Enums.CaseStatus | null;
     newStatus: $Enums.CaseStatus | null;
     remarks: string | null;
@@ -20,6 +21,7 @@ export type CaseHistoryMaxAggregateOutputType = {
     id: string | null;
     caseId: string | null;
     changedById: string | null;
+    action: string | null;
     oldStatus: $Enums.CaseStatus | null;
     newStatus: $Enums.CaseStatus | null;
     remarks: string | null;
@@ -29,6 +31,7 @@ export type CaseHistoryCountAggregateOutputType = {
     id: number;
     caseId: number;
     changedById: number;
+    action: number;
     oldStatus: number;
     newStatus: number;
     remarks: number;
@@ -39,6 +42,7 @@ export type CaseHistoryMinAggregateInputType = {
     id?: true;
     caseId?: true;
     changedById?: true;
+    action?: true;
     oldStatus?: true;
     newStatus?: true;
     remarks?: true;
@@ -48,6 +52,7 @@ export type CaseHistoryMaxAggregateInputType = {
     id?: true;
     caseId?: true;
     changedById?: true;
+    action?: true;
     oldStatus?: true;
     newStatus?: true;
     remarks?: true;
@@ -57,6 +62,7 @@ export type CaseHistoryCountAggregateInputType = {
     id?: true;
     caseId?: true;
     changedById?: true;
+    action?: true;
     oldStatus?: true;
     newStatus?: true;
     remarks?: true;
@@ -91,8 +97,9 @@ export type CaseHistoryGroupByOutputType = {
     id: string;
     caseId: string;
     changedById: string;
+    action: string;
     oldStatus: $Enums.CaseStatus | null;
-    newStatus: $Enums.CaseStatus;
+    newStatus: $Enums.CaseStatus | null;
     remarks: string | null;
     createdAt: Date;
     _count: CaseHistoryCountAggregateOutputType | null;
@@ -109,8 +116,9 @@ export type CaseHistoryWhereInput = {
     id?: Prisma.StringFilter<"CaseHistory"> | string;
     caseId?: Prisma.StringFilter<"CaseHistory"> | string;
     changedById?: Prisma.StringFilter<"CaseHistory"> | string;
+    action?: Prisma.StringFilter<"CaseHistory"> | string;
     oldStatus?: Prisma.EnumCaseStatusNullableFilter<"CaseHistory"> | $Enums.CaseStatus | null;
-    newStatus?: Prisma.EnumCaseStatusFilter<"CaseHistory"> | $Enums.CaseStatus;
+    newStatus?: Prisma.EnumCaseStatusNullableFilter<"CaseHistory"> | $Enums.CaseStatus | null;
     remarks?: Prisma.StringNullableFilter<"CaseHistory"> | string | null;
     createdAt?: Prisma.DateTimeFilter<"CaseHistory"> | Date | string;
     case?: Prisma.XOR<Prisma.CaseScalarRelationFilter, Prisma.CaseWhereInput>;
@@ -120,8 +128,9 @@ export type CaseHistoryOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
     caseId?: Prisma.SortOrder;
     changedById?: Prisma.SortOrder;
+    action?: Prisma.SortOrder;
     oldStatus?: Prisma.SortOrderInput | Prisma.SortOrder;
-    newStatus?: Prisma.SortOrder;
+    newStatus?: Prisma.SortOrderInput | Prisma.SortOrder;
     remarks?: Prisma.SortOrderInput | Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
     case?: Prisma.CaseOrderByWithRelationInput;
@@ -134,8 +143,9 @@ export type CaseHistoryWhereUniqueInput = Prisma.AtLeast<{
     NOT?: Prisma.CaseHistoryWhereInput | Prisma.CaseHistoryWhereInput[];
     caseId?: Prisma.StringFilter<"CaseHistory"> | string;
     changedById?: Prisma.StringFilter<"CaseHistory"> | string;
+    action?: Prisma.StringFilter<"CaseHistory"> | string;
     oldStatus?: Prisma.EnumCaseStatusNullableFilter<"CaseHistory"> | $Enums.CaseStatus | null;
-    newStatus?: Prisma.EnumCaseStatusFilter<"CaseHistory"> | $Enums.CaseStatus;
+    newStatus?: Prisma.EnumCaseStatusNullableFilter<"CaseHistory"> | $Enums.CaseStatus | null;
     remarks?: Prisma.StringNullableFilter<"CaseHistory"> | string | null;
     createdAt?: Prisma.DateTimeFilter<"CaseHistory"> | Date | string;
     case?: Prisma.XOR<Prisma.CaseScalarRelationFilter, Prisma.CaseWhereInput>;
@@ -145,8 +155,9 @@ export type CaseHistoryOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
     caseId?: Prisma.SortOrder;
     changedById?: Prisma.SortOrder;
+    action?: Prisma.SortOrder;
     oldStatus?: Prisma.SortOrderInput | Prisma.SortOrder;
-    newStatus?: Prisma.SortOrder;
+    newStatus?: Prisma.SortOrderInput | Prisma.SortOrder;
     remarks?: Prisma.SortOrderInput | Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
     _count?: Prisma.CaseHistoryCountOrderByAggregateInput;
@@ -160,15 +171,17 @@ export type CaseHistoryScalarWhereWithAggregatesInput = {
     id?: Prisma.StringWithAggregatesFilter<"CaseHistory"> | string;
     caseId?: Prisma.StringWithAggregatesFilter<"CaseHistory"> | string;
     changedById?: Prisma.StringWithAggregatesFilter<"CaseHistory"> | string;
+    action?: Prisma.StringWithAggregatesFilter<"CaseHistory"> | string;
     oldStatus?: Prisma.EnumCaseStatusNullableWithAggregatesFilter<"CaseHistory"> | $Enums.CaseStatus | null;
-    newStatus?: Prisma.EnumCaseStatusWithAggregatesFilter<"CaseHistory"> | $Enums.CaseStatus;
+    newStatus?: Prisma.EnumCaseStatusNullableWithAggregatesFilter<"CaseHistory"> | $Enums.CaseStatus | null;
     remarks?: Prisma.StringNullableWithAggregatesFilter<"CaseHistory"> | string | null;
     createdAt?: Prisma.DateTimeWithAggregatesFilter<"CaseHistory"> | Date | string;
 };
 export type CaseHistoryCreateInput = {
     id?: string;
+    action: string;
     oldStatus?: $Enums.CaseStatus | null;
-    newStatus: $Enums.CaseStatus;
+    newStatus?: $Enums.CaseStatus | null;
     remarks?: string | null;
     createdAt?: Date | string;
     case: Prisma.CaseCreateNestedOneWithoutHistoryInput;
@@ -178,15 +191,17 @@ export type CaseHistoryUncheckedCreateInput = {
     id?: string;
     caseId: string;
     changedById: string;
+    action: string;
     oldStatus?: $Enums.CaseStatus | null;
-    newStatus: $Enums.CaseStatus;
+    newStatus?: $Enums.CaseStatus | null;
     remarks?: string | null;
     createdAt?: Date | string;
 };
 export type CaseHistoryUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    action?: Prisma.StringFieldUpdateOperationsInput | string;
     oldStatus?: Prisma.NullableEnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus | null;
-    newStatus?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus;
+    newStatus?: Prisma.NullableEnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus | null;
     remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     case?: Prisma.CaseUpdateOneRequiredWithoutHistoryNestedInput;
@@ -196,8 +211,9 @@ export type CaseHistoryUncheckedUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     caseId?: Prisma.StringFieldUpdateOperationsInput | string;
     changedById?: Prisma.StringFieldUpdateOperationsInput | string;
+    action?: Prisma.StringFieldUpdateOperationsInput | string;
     oldStatus?: Prisma.NullableEnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus | null;
-    newStatus?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus;
+    newStatus?: Prisma.NullableEnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus | null;
     remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -205,15 +221,17 @@ export type CaseHistoryCreateManyInput = {
     id?: string;
     caseId: string;
     changedById: string;
+    action: string;
     oldStatus?: $Enums.CaseStatus | null;
-    newStatus: $Enums.CaseStatus;
+    newStatus?: $Enums.CaseStatus | null;
     remarks?: string | null;
     createdAt?: Date | string;
 };
 export type CaseHistoryUpdateManyMutationInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    action?: Prisma.StringFieldUpdateOperationsInput | string;
     oldStatus?: Prisma.NullableEnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus | null;
-    newStatus?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus;
+    newStatus?: Prisma.NullableEnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus | null;
     remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -221,8 +239,9 @@ export type CaseHistoryUncheckedUpdateManyInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     caseId?: Prisma.StringFieldUpdateOperationsInput | string;
     changedById?: Prisma.StringFieldUpdateOperationsInput | string;
+    action?: Prisma.StringFieldUpdateOperationsInput | string;
     oldStatus?: Prisma.NullableEnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus | null;
-    newStatus?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus;
+    newStatus?: Prisma.NullableEnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus | null;
     remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -238,6 +257,7 @@ export type CaseHistoryCountOrderByAggregateInput = {
     id?: Prisma.SortOrder;
     caseId?: Prisma.SortOrder;
     changedById?: Prisma.SortOrder;
+    action?: Prisma.SortOrder;
     oldStatus?: Prisma.SortOrder;
     newStatus?: Prisma.SortOrder;
     remarks?: Prisma.SortOrder;
@@ -247,6 +267,7 @@ export type CaseHistoryMaxOrderByAggregateInput = {
     id?: Prisma.SortOrder;
     caseId?: Prisma.SortOrder;
     changedById?: Prisma.SortOrder;
+    action?: Prisma.SortOrder;
     oldStatus?: Prisma.SortOrder;
     newStatus?: Prisma.SortOrder;
     remarks?: Prisma.SortOrder;
@@ -256,6 +277,7 @@ export type CaseHistoryMinOrderByAggregateInput = {
     id?: Prisma.SortOrder;
     caseId?: Prisma.SortOrder;
     changedById?: Prisma.SortOrder;
+    action?: Prisma.SortOrder;
     oldStatus?: Prisma.SortOrder;
     newStatus?: Prisma.SortOrder;
     remarks?: Prisma.SortOrder;
@@ -342,8 +364,9 @@ export type NullableEnumCaseStatusFieldUpdateOperationsInput = {
 };
 export type CaseHistoryCreateWithoutChangedByInput = {
     id?: string;
+    action: string;
     oldStatus?: $Enums.CaseStatus | null;
-    newStatus: $Enums.CaseStatus;
+    newStatus?: $Enums.CaseStatus | null;
     remarks?: string | null;
     createdAt?: Date | string;
     case: Prisma.CaseCreateNestedOneWithoutHistoryInput;
@@ -351,8 +374,9 @@ export type CaseHistoryCreateWithoutChangedByInput = {
 export type CaseHistoryUncheckedCreateWithoutChangedByInput = {
     id?: string;
     caseId: string;
+    action: string;
     oldStatus?: $Enums.CaseStatus | null;
-    newStatus: $Enums.CaseStatus;
+    newStatus?: $Enums.CaseStatus | null;
     remarks?: string | null;
     createdAt?: Date | string;
 };
@@ -384,15 +408,17 @@ export type CaseHistoryScalarWhereInput = {
     id?: Prisma.StringFilter<"CaseHistory"> | string;
     caseId?: Prisma.StringFilter<"CaseHistory"> | string;
     changedById?: Prisma.StringFilter<"CaseHistory"> | string;
+    action?: Prisma.StringFilter<"CaseHistory"> | string;
     oldStatus?: Prisma.EnumCaseStatusNullableFilter<"CaseHistory"> | $Enums.CaseStatus | null;
-    newStatus?: Prisma.EnumCaseStatusFilter<"CaseHistory"> | $Enums.CaseStatus;
+    newStatus?: Prisma.EnumCaseStatusNullableFilter<"CaseHistory"> | $Enums.CaseStatus | null;
     remarks?: Prisma.StringNullableFilter<"CaseHistory"> | string | null;
     createdAt?: Prisma.DateTimeFilter<"CaseHistory"> | Date | string;
 };
 export type CaseHistoryCreateWithoutCaseInput = {
     id?: string;
+    action: string;
     oldStatus?: $Enums.CaseStatus | null;
-    newStatus: $Enums.CaseStatus;
+    newStatus?: $Enums.CaseStatus | null;
     remarks?: string | null;
     createdAt?: Date | string;
     changedBy: Prisma.UserCreateNestedOneWithoutCaseHistoryChangesInput;
@@ -400,8 +426,9 @@ export type CaseHistoryCreateWithoutCaseInput = {
 export type CaseHistoryUncheckedCreateWithoutCaseInput = {
     id?: string;
     changedById: string;
+    action: string;
     oldStatus?: $Enums.CaseStatus | null;
-    newStatus: $Enums.CaseStatus;
+    newStatus?: $Enums.CaseStatus | null;
     remarks?: string | null;
     createdAt?: Date | string;
 };
@@ -429,15 +456,17 @@ export type CaseHistoryUpdateManyWithWhereWithoutCaseInput = {
 export type CaseHistoryCreateManyChangedByInput = {
     id?: string;
     caseId: string;
+    action: string;
     oldStatus?: $Enums.CaseStatus | null;
-    newStatus: $Enums.CaseStatus;
+    newStatus?: $Enums.CaseStatus | null;
     remarks?: string | null;
     createdAt?: Date | string;
 };
 export type CaseHistoryUpdateWithoutChangedByInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    action?: Prisma.StringFieldUpdateOperationsInput | string;
     oldStatus?: Prisma.NullableEnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus | null;
-    newStatus?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus;
+    newStatus?: Prisma.NullableEnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus | null;
     remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     case?: Prisma.CaseUpdateOneRequiredWithoutHistoryNestedInput;
@@ -445,31 +474,35 @@ export type CaseHistoryUpdateWithoutChangedByInput = {
 export type CaseHistoryUncheckedUpdateWithoutChangedByInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     caseId?: Prisma.StringFieldUpdateOperationsInput | string;
+    action?: Prisma.StringFieldUpdateOperationsInput | string;
     oldStatus?: Prisma.NullableEnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus | null;
-    newStatus?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus;
+    newStatus?: Prisma.NullableEnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus | null;
     remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 export type CaseHistoryUncheckedUpdateManyWithoutChangedByInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     caseId?: Prisma.StringFieldUpdateOperationsInput | string;
+    action?: Prisma.StringFieldUpdateOperationsInput | string;
     oldStatus?: Prisma.NullableEnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus | null;
-    newStatus?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus;
+    newStatus?: Prisma.NullableEnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus | null;
     remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 export type CaseHistoryCreateManyCaseInput = {
     id?: string;
     changedById: string;
+    action: string;
     oldStatus?: $Enums.CaseStatus | null;
-    newStatus: $Enums.CaseStatus;
+    newStatus?: $Enums.CaseStatus | null;
     remarks?: string | null;
     createdAt?: Date | string;
 };
 export type CaseHistoryUpdateWithoutCaseInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    action?: Prisma.StringFieldUpdateOperationsInput | string;
     oldStatus?: Prisma.NullableEnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus | null;
-    newStatus?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus;
+    newStatus?: Prisma.NullableEnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus | null;
     remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     changedBy?: Prisma.UserUpdateOneRequiredWithoutCaseHistoryChangesNestedInput;
@@ -477,16 +510,18 @@ export type CaseHistoryUpdateWithoutCaseInput = {
 export type CaseHistoryUncheckedUpdateWithoutCaseInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     changedById?: Prisma.StringFieldUpdateOperationsInput | string;
+    action?: Prisma.StringFieldUpdateOperationsInput | string;
     oldStatus?: Prisma.NullableEnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus | null;
-    newStatus?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus;
+    newStatus?: Prisma.NullableEnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus | null;
     remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 export type CaseHistoryUncheckedUpdateManyWithoutCaseInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     changedById?: Prisma.StringFieldUpdateOperationsInput | string;
+    action?: Prisma.StringFieldUpdateOperationsInput | string;
     oldStatus?: Prisma.NullableEnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus | null;
-    newStatus?: Prisma.EnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus;
+    newStatus?: Prisma.NullableEnumCaseStatusFieldUpdateOperationsInput | $Enums.CaseStatus | null;
     remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -494,6 +529,7 @@ export type CaseHistorySelect<ExtArgs extends runtime.Types.Extensions.InternalA
     id?: boolean;
     caseId?: boolean;
     changedById?: boolean;
+    action?: boolean;
     oldStatus?: boolean;
     newStatus?: boolean;
     remarks?: boolean;
@@ -505,6 +541,7 @@ export type CaseHistorySelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
     id?: boolean;
     caseId?: boolean;
     changedById?: boolean;
+    action?: boolean;
     oldStatus?: boolean;
     newStatus?: boolean;
     remarks?: boolean;
@@ -516,6 +553,7 @@ export type CaseHistorySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
     id?: boolean;
     caseId?: boolean;
     changedById?: boolean;
+    action?: boolean;
     oldStatus?: boolean;
     newStatus?: boolean;
     remarks?: boolean;
@@ -527,12 +565,13 @@ export type CaseHistorySelectScalar = {
     id?: boolean;
     caseId?: boolean;
     changedById?: boolean;
+    action?: boolean;
     oldStatus?: boolean;
     newStatus?: boolean;
     remarks?: boolean;
     createdAt?: boolean;
 };
-export type CaseHistoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "caseId" | "changedById" | "oldStatus" | "newStatus" | "remarks" | "createdAt", ExtArgs["result"]["caseHistory"]>;
+export type CaseHistoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "caseId" | "changedById" | "action" | "oldStatus" | "newStatus" | "remarks" | "createdAt", ExtArgs["result"]["caseHistory"]>;
 export type CaseHistoryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     case?: boolean | Prisma.CaseDefaultArgs<ExtArgs>;
     changedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
@@ -555,8 +594,9 @@ export type $CaseHistoryPayload<ExtArgs extends runtime.Types.Extensions.Interna
         id: string;
         caseId: string;
         changedById: string;
+        action: string;
         oldStatus: $Enums.CaseStatus | null;
-        newStatus: $Enums.CaseStatus;
+        newStatus: $Enums.CaseStatus | null;
         remarks: string | null;
         createdAt: Date;
     }, ExtArgs["result"]["caseHistory"]>;
@@ -621,6 +661,7 @@ export interface CaseHistoryFieldRefs {
     readonly id: Prisma.FieldRef<"CaseHistory", 'String'>;
     readonly caseId: Prisma.FieldRef<"CaseHistory", 'String'>;
     readonly changedById: Prisma.FieldRef<"CaseHistory", 'String'>;
+    readonly action: Prisma.FieldRef<"CaseHistory", 'String'>;
     readonly oldStatus: Prisma.FieldRef<"CaseHistory", 'CaseStatus'>;
     readonly newStatus: Prisma.FieldRef<"CaseHistory", 'CaseStatus'>;
     readonly remarks: Prisma.FieldRef<"CaseHistory", 'String'>;

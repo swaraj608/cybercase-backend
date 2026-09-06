@@ -108,6 +108,7 @@ exports.CaseHistoryScalarFieldEnum = {
     id: 'id',
     caseId: 'caseId',
     changedById: 'changedById',
+    action: 'action',
     oldStatus: 'oldStatus',
     newStatus: 'newStatus',
     remarks: 'remarks',
